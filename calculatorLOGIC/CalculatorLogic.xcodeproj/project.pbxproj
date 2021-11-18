@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC1CB3F1274412A600A7510F /* UnaryOperatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1CB3F0274412A600A7510F /* UnaryOperatorButton.swift */; };
 		D2459EB8273F9E5C00546CC8 /* CalculatorLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2459EB7273F9E5C00546CC8 /* CalculatorLogic.swift */; };
 		D2459EBC273FA9A500546CC8 /* ManualLayoutCalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2459EBB273FA9A500546CC8 /* ManualLayoutCalculatorViewController.swift */; };
 		D2459EBE273FAEAC00546CC8 /* DigitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2459EBD273FAEAC00546CC8 /* DigitButton.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC1CB3F0274412A600A7510F /* UnaryOperatorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnaryOperatorButton.swift; sourceTree = "<group>"; };
 		D2459EB7273F9E5C00546CC8 /* CalculatorLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorLogic.swift; sourceTree = "<group>"; };
 		D2459EBB273FA9A500546CC8 /* ManualLayoutCalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLayoutCalculatorViewController.swift; sourceTree = "<group>"; };
 		D2459EBD273FAEAC00546CC8 /* DigitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitButton.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				D283CB12273662B900EFB4ED /* RoundedButton.swift */,
 				D2459EBD273FAEAC00546CC8 /* DigitButton.swift */,
 				D283CB16273669AF00EFB4ED /* BinaryOperatorButton.swift */,
+				CC1CB3F0274412A600A7510F /* UnaryOperatorButton.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -144,7 +147,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D283CAF327319DAD00EFB4ED /* Build configuration list for PBXProject "Calculator" */;
+			buildConfigurationList = D283CAF327319DAD00EFB4ED /* Build configuration list for PBXProject "CalculatorLogic" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D283CB17273669AF00EFB4ED /* BinaryOperatorButton.swift in Sources */,
+				CC1CB3F1274412A600A7510F /* UnaryOperatorButton.swift in Sources */,
 				D2459EBE273FAEAC00546CC8 /* DigitButton.swift in Sources */,
 				D283CB0027319DAD00EFB4ED /* StoryboardedCalculatorViewController.swift in Sources */,
 				D2459EBC273FA9A500546CC8 /* ManualLayoutCalculatorViewController.swift in Sources */,
@@ -393,7 +397,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D283CAF327319DAD00EFB4ED /* Build configuration list for PBXProject "Calculator" */ = {
+		D283CAF327319DAD00EFB4ED /* Build configuration list for PBXProject "CalculatorLogic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D283CB0A27319DAE00EFB4ED /* Debug */,

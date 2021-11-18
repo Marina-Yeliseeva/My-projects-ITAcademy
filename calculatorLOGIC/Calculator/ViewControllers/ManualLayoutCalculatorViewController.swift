@@ -82,7 +82,8 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
         ])
         
         let digitPlusButton = BinaryOperatorButton(type: .custom)
-        digitPlusButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        digitPlusButton.tag = BinaryOperand.sum.rawValue
+        digitPlusButton.addTarget(self, action: #selector(binaryOperandButtonTapped), for: .touchUpInside)
         digitPlusButton.setTitle("+", for: .normal)
         digitPlusButton.setTitleColor(digitPlusButton.selectedColor, for: .normal)
         digitPlusButton.setTitleColor(digitPlusButton.defaultColor, for: .selected)
@@ -101,7 +102,8 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
         ])
         
         let digitMinusButton = BinaryOperatorButton(type: .custom)
-        digitMinusButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        digitMinusButton.tag = BinaryOperand.substruct.rawValue
+        digitMinusButton.addTarget(self, action: #selector(binaryOperandButtonTapped), for: .touchUpInside)
         digitMinusButton.setTitle("-", for: .normal)
         digitMinusButton.setTitleColor(digitMinusButton.selectedColor, for: .normal)
         digitMinusButton.setTitleColor(digitMinusButton.defaultColor, for: .selected)
@@ -120,7 +122,8 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
         ])
         
         let digitMultyButton = BinaryOperatorButton(type: .custom)
-        digitMultyButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        digitMultyButton.tag = BinaryOperand.multiply.rawValue
+        digitMultyButton.addTarget(self, action: #selector(binaryOperandButtonTapped), for: .touchUpInside)
         digitMultyButton.setTitle("×", for: .normal)
         digitMultyButton.setTitleColor(digitMultyButton.selectedColor, for: .normal)
         digitMultyButton.setTitleColor(digitMultyButton.defaultColor, for: .selected)
@@ -139,7 +142,8 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
         ])
         
         let digitDivideButton = BinaryOperatorButton(type: .custom)
-        digitDivideButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        digitDivideButton.tag = BinaryOperand.divide.rawValue
+        digitDivideButton.addTarget(self, action: #selector(binaryOperandButtonTapped), for: .touchUpInside)
         digitDivideButton.setTitle("÷", for: .normal)
         digitDivideButton.setTitleColor(digitDivideButton.selectedColor, for: .normal)
         digitDivideButton.setTitleColor(digitDivideButton.defaultColor, for: .selected)
@@ -261,12 +265,15 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
         ])
         
         
-        let digitPercentButton = BinaryOperatorButton(type: .custom)
-        digitPercentButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        let digitPercentButton = UnaryOperatorButton(type: .custom)
+        digitPercentButton.tag = UnaryOperand.percent.rawValue
+        digitPercentButton.addTarget(self, action: #selector(unaryOperatorButtonTapped), for: .touchUpInside)
         digitPercentButton.setTitle("%", for: .normal)
         digitPercentButton.backgroundColor = .lightGray
         digitPercentButton.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
         digitPercentButton.setTitleColor(.black, for: .normal)
+     
+        
         digitPercentButton.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(digitPercentButton)
@@ -279,8 +286,9 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
             digitPercentButton.widthAnchor.constraint(equalTo: equalButton.widthAnchor)
         ])
         
-        let digitSignButton = BinaryOperatorButton(type: .custom)
-        digitSignButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        let digitSignButton = UnaryOperatorButton(type: .custom)
+        digitSignButton.tag = UnaryOperand.invert.rawValue
+        digitSignButton.addTarget(self, action: #selector(unaryOperatorButtonTapped), for: .touchUpInside)
         digitSignButton.setTitle("+/-", for: .normal)
         digitSignButton.backgroundColor = .lightGray
         digitSignButton.setTitleColor(.black, for: .normal)
@@ -298,8 +306,8 @@ class ManualLayoutCalculatorViewController: AbstractCalculatorViewController {
             digitSignButton.widthAnchor.constraint(equalTo: equalButton.widthAnchor)
         ])
         
-        let digitClearButton = BinaryOperatorButton(type: .custom)
-        digitClearButton.addTarget(self, action: #selector(equalOperatorButtonTapped), for: .touchUpInside)
+        let digitClearButton = UnaryOperatorButton(type: .custom)
+        digitClearButton.addTarget(self, action: #selector(unaryOperatorButtonTapped), for: .touchUpInside)
         digitClearButton.setTitle("AC", for: .normal)
         digitClearButton.backgroundColor = .lightGray
         digitClearButton.setTitleColor(.black, for: .normal)
