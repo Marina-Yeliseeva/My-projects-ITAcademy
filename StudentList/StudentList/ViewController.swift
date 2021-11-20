@@ -32,6 +32,9 @@ class ViewController: UIViewController {
                "Сысов Валерий Александрович"
     ].sorted()
     
+    lazy var sections = {
+        return [men, women]
+    }()
     
     
     override func viewDidLoad() {
@@ -41,27 +44,38 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return men.count
+        return sections[section].count
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Мужчины \(men.count)"
-    }
+        switch section{
+        case 0: return "Мужчины \(men.count) человек"
+        case 1: return "Женщины \(women.count) человек"
+        default: break
+        }
+        return "\(section)"
+        }
+   
+    
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath) as! StudentCell
-        cell.nameLabel.text = men[indexPath.row]
-//        if indexPath.section == 0{
-//       cell.nameLabel.text = men[indexPath.row]
-//        }
-//        else {
-//            cell.nameLabel.text = men[indexPath.row].append.women[indexPath.row]       }
+        if indexPath.section == 0{
+            cell.nameLabel.text = sections[indexPath.section][indexPath.row]
+        }
+        if indexPath.section == 1{
+            cell.nameLabel.text = sections[indexPath.section][indexPath.row]
+        }
+       
         return cell
     }
    
