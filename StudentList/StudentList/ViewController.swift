@@ -8,8 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
+  
+
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var women = ["Букаренко Арина Олеговна",
                  "Ефименко Анастасия Владимировна",
@@ -32,22 +35,37 @@ class ViewController: UIViewController {
                "Сысов Валерий Александрович"
     ].sorted()
     
-    lazy var sections = {
-        return [men, women]
-    }()
+    var filteredMen:[String]!
+    var filteredWomen:[String]!
     
+//    lazy var sections = {
+//        return [men, women]
+//    }()
+   
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        filteredMen = men
+        filteredWomen = women
+        
         
     }
+    
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource,UISearchBarDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].count
+        switch section{
+        case 0: return filteredMen.count
+        case 1: return filteredWomen.count
+        default: break
+        }
+        
+        return filteredMen.count + filteredWomen.count
         
     }
     
@@ -63,23 +81,43 @@ extension ViewController: UITableViewDataSource {
     
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath) as! StudentCell
         if indexPath.section == 0{
-            cell.nameLabel.text = sections[indexPath.section][indexPath.row]
+            cell.nameLabel.text = filteredMen[indexPath.row]
         }
         if indexPath.section == 1{
-            cell.nameLabel.text = sections[indexPath.section][indexPath.row]
+            cell.nameLabel.text = filteredWomen[indexPath.row]
         }
        
         return cell
     }
-   
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredMen = []
+        filteredWomen = []
+        if searchText == ""{
+            filteredMen = men
+            filteredWomen = women
+        }
+        for word in men{
+            if word.lowercased().contains(searchText.lowercased()){
+                filteredMen.append(word)
+        }
+        }
+        for word in women{
+            if word.lowercased().contains(searchText.lowercased()){
+                filteredWomen.append(word)
+        }
+        }
+      self.tableView.reloadData()
+    }
+ 
 }
+
 
 
 
