@@ -8,11 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
-
-
+    
+    
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+  
     
     var women = ["Букаренко Арина Олеговна",
                  "Ефименко Анастасия Владимировна",
@@ -22,101 +22,155 @@ class ViewController: UIViewController {
     ].sorted()
     
     var men =  ["Богданович Дмитрий Александрович",
-               "Гришин Павел Андреевич",
-               "Куклицкий Максим Сергеевич",
-               "Лапин Николай Владимирович",
-               "Малишевский Никита Валерьевич",
-               "Матвеенко Сергей Александрови",
-               "Мостовой Алексей Алексеевич",
-               "Пачковский Михаил Тадеушевич",
-               "Савков Александр Геннадьевич",
-               "Симонов Владислав Дмитриевич",
-               "Сысов Валерий Александрович",
-               "Артимович Игорь Владимирович"
+                "Гришин Павел Андреевич",
+                "Куклицкий Максим Сергеевич",
+                "Лапин Николай Владимирович",
+                "Малишевский Никита Валерьевич",
+                "Матвеенко Сергей Александрови",
+                "Мостовой Алексей Алексеевич",
+                "Пачковский Михаил Тадеушевич",
+                "Савков Александр Геннадьевич",
+                "Симонов Владислав Дмитриевич",
+                "Сысов Валерий Александрович",
+                "Артимович Игорь Владимирович"
     ].sorted()
     
-    var filteredMen:[String]!
-    var filteredWomen:[String]!
-    
-//    lazy var sections = {
-//        return [men, women]
-//    }()
-   
-  
-    
+    var filteredMen:[String] = []
+    var filteredWomen:[String] = []
+
+    var dataSource: [[String]] {
+        [filteredMen, filteredWomen]
+    }
+
+    var filterText: String? {
+        didSet {
+            if let filterText = filterText {
+                filterDataSource(filterText)
+            } else {
+                resetDataSource()
+            }
+        }
+    }
+
+    // MARK: - UIViewController LifeCycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
+        tableView.keyboardDismissMode = .onDrag
+        filterText = nil
+    }
+
+
+// MARK: - Functions
+
+    func resetDataSource() {
         filteredMen = men
         filteredWomen = women
-        
-        
+        tableView.reloadData()
     }
-    
+
+    func filterDataSource(_ filterText: String) {
+        if filterText.count > 0 {
+            filteredMen = men.filter {
+                $0.lowercased().contains(filterText.lowercased())
+            }
+
+            filteredWomen = women.filter {
+                $0.lowercased().contains(filterText.lowercased())
+            }
+
+            tableView.reloadData()
+        } else {
+            resetDataSource()
+        }
+    }
 }
 
-extension ViewController: UITableViewDataSource,UISearchBarDelegate {
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
-        case 0: return filteredMen.count
-        case 1: return filteredWomen.count
-        default: break
-        }
-        
-        return filteredMen.count + filteredWomen.count
-        
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
-        case 0: return "Мужчины \(men.count) человек"
-        case 1: return "Женщины \(women.count) человек"
-        default: break
-        }
-        return "\(section)"
-        }
-   
-    
+extension ViewController: UITableViewDataSource {
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return dataSource[section].count
+}
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    var sectionName: String = ""
+    switch section {
+    case 0: sectionName = "Мужчины"
+    case 1: sectionName = "Женщины"
+    default: break
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath) as! StudentCell
-        if indexPath.section == 0{
-            cell.nameLabel.text = filteredMen[indexPath.row]
-        }
-        if indexPath.section == 1{
-            cell.nameLabel.text = filteredWomen[indexPath.row]
-        }
-       
-        return cell
+    return "\(sectionName) \(dataSource[section].count) человек"
+}
+//    //мой вариант
+////    switch section{
+////    case 0: return "Мужчины \(filteredMen.count) человек"
+////    case 1: return "Женщины \(filteredWomen.count) человек"
+////    default: break
+////    }
+////    return "\(section)"
+////}
+
+
+func numberOfSections(in tableView: UITableView) -> Int {
+    return dataSource.count
+}
+//    // мой вариант
+////    switch section{
+////    case 0: return filteredMen.count
+////    case 1: return filteredWomen.count
+////    default: break
+////    }
+////    return filteredMen.count + filteredWomen.count
+////}
+//
+//
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath) as! StudentCell
+    cell.nameLabel.text = dataSource[indexPath.section][indexPath.row]
+
+    return cell
+}
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("selected \(dataSource[indexPath.section][indexPath.row])")
     }
+}
+
+extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredMen = []
-        filteredWomen = []
-        if searchText == ""{
-            filteredMen = men
-            filteredWomen = women
-        }
-        for word in men{
-            if word.lowercased().contains(searchText.lowercased()){
-                filteredMen.append(word)
-        }
-        }
-        for word in women{
-            if word.lowercased().contains(searchText.lowercased()){
-                filteredWomen.append(word)
-        }
-        }
-      self.tableView.reloadData()
+        filterText = searchText
     }
- 
 }
+
+
+
+     //my search bar ( если search bar outlet)
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        filteredMen = []
+//        filteredWomen = []
+//        if searchText == ""{
+//            filteredMen = men
+//            filteredWomen = women
+//        }
+//        for word in men{
+//            if word.lowercased().contains(searchText.lowercased()){
+//                filteredMen.append(word)
+//            }
+//        }
+//        for word in women{
+//            if word.lowercased().contains(searchText.lowercased()){
+//                filteredWomen.append(word)
+//            }
+//        }
+//        self.tableView.reloadData()
+//    }
+//
+
 
 
 
