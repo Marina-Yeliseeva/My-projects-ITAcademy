@@ -53,7 +53,6 @@
                                         <color key="tintColor" systemColor="linkColor"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="uJf-jF-IAf" id="Rmm-8X-6Qg"/>
-                                            <segue destination="2dq-JZ-Mad" kind="show" id="1lk-Nh-6Kf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -83,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2749.275362318841" y="68.973214285714278"/>
+            <point key="canvasLocation" x="3659.420289855073" y="68.973214285714278"/>
         </scene>
         <!--Select Student View Controller-->
         <scene sceneID="usX-8K-UWr">
@@ -121,25 +120,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAG-zN-qrn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3498.5507246376815" y="68.973214285714278"/>
+            <point key="canvasLocation" x="4408.695652173913" y="68.973214285714278"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="3Jd-RV-gh3">
+        <scene sceneID="UtE-ay-ocd">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Os-Gq-Yux" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nlJ-vS-A7P" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d0m-bj-oaH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xF0-BN-Cz7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="adA-W8-frM"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vhC-Uc-9bb"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lfx-kI-dhq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p7V-Sf-faC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1839.1304347826087" y="68.973214285714278"/>
+            <point key="canvasLocation" x="2749.275362318841" y="68.973214285714278"/>
         </scene>
     </scenes>
     <resources>

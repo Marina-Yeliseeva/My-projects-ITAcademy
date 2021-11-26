@@ -10,14 +10,16 @@ import UIKit
 protocol ViewControllerDelegate{
     func didSelectStudent(_ student: String)
 }
-//protocol UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-//}
 
 class ViewController: UIViewController {
     
     var delegate: ViewControllerDelegate?
-//    var delegate2: UITableViewDelegate?
+
+    
+    func didSelectStudent(sender: String) {
+            // Вызываем делегат в тот момент, когда кнопка нажата
+        delegate?.didSelectStudent(sender)
+        }
     
     @IBOutlet weak var tableView: UITableView!
   
@@ -149,11 +151,13 @@ extension ViewController: UITableViewDelegate {
        tableView.deselectRow(at: indexPath, animated: true)
         let name:String
         name = dataSource[indexPath.section][indexPath.row]
-    
-    
         print("selected \(name)")
+        
+        self.didSelectStudent(sender: name) // updateStudentNameButton
+        self.dismiss(animated: true, completion: nil) //close StudentList
     }
 }
+
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
