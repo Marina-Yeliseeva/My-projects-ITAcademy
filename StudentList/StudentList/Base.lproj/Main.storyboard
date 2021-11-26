@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2dq-JZ-Mad">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -11,20 +11,20 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="StudentList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="StudentList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-m6-V4l">
-                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="exL-X1-Hrs"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ohQ-Xn-wiQ">
-                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
+                                <rect key="frame" x="0.0" y="139" width="414" height="723"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -53,11 +53,13 @@
                                         <color key="tintColor" systemColor="linkColor"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="uJf-jF-IAf" id="Rmm-8X-6Qg"/>
+                                            <segue destination="2dq-JZ-Mad" kind="show" id="1lk-Nh-6Kf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="2Uu-3t-Cdy"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="NUN-af-ETz"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -74,13 +76,70 @@
                             <constraint firstItem="CWb-m6-V4l" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="zbz-N0-QVj"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ZR9-Ek-XLY"/>
                     <connections>
                         <outlet property="tableView" destination="ohQ-Xn-wiQ" id="oY5-eA-goU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="68.973214285714278"/>
+            <point key="canvasLocation" x="2749.275362318841" y="68.973214285714278"/>
+        </scene>
+        <!--Select Student View Controller-->
+        <scene sceneID="usX-8K-UWr">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="2dq-JZ-Mad" customClass="SelectStudentViewController" customModule="StudentList" sceneMemberID="viewController">
+                    <string key="storyboardIdentifier">SelectStudentViewController
+       
+  </string>
+                    <view key="view" contentMode="scaleToFill" id="kg4-y5-G77">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y73-cC-gel">
+                                <rect key="frame" x="58" y="426" width="298.5" height="44"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="choose Student's name">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="25"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="studentButton:" destination="2dq-JZ-Mad" eventType="touchUpInside" id="Uzm-go-5xd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bav-1f-53a"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Y73-cC-gel" firstAttribute="centerY" secondItem="kg4-y5-G77" secondAttribute="centerY" id="gOG-0F-E2l"/>
+                            <constraint firstItem="Y73-cC-gel" firstAttribute="centerX" secondItem="kg4-y5-G77" secondAttribute="centerX" id="vW4-QE-ChG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pPN-Ab-AQv"/>
+                    <connections>
+                        <outlet property="studentName" destination="Y73-cC-gel" id="dDs-3o-MCb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EAG-zN-qrn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3498.5507246376815" y="68.973214285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3Jd-RV-gh3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Os-Gq-Yux" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d0m-bj-oaH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="adA-W8-frM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lfx-kI-dhq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839.1304347826087" y="68.973214285714278"/>
         </scene>
     </scenes>
     <resources>

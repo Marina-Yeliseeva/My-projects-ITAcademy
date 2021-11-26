@@ -7,9 +7,17 @@
 
 import UIKit
 
+protocol ViewControllerDelegate{
+    func didSelectStudent(_ student: String)
+}
+//protocol UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+//}
+
 class ViewController: UIViewController {
     
-    
+    var delegate: ViewControllerDelegate?
+//    var delegate2: UITableViewDelegate?
     
     @IBOutlet weak var tableView: UITableView!
   
@@ -62,6 +70,9 @@ class ViewController: UIViewController {
 
 
 // MARK: - Functions
+//    func closeStudentButton(){
+//        dismiss(animated: true)
+//    }
 
     func resetDataSource() {
         filteredMen = men
@@ -135,8 +146,12 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        tableView.deselectRow(at: indexPath, animated: true)
-        print("selected \(dataSource[indexPath.section][indexPath.row])")
+       tableView.deselectRow(at: indexPath, animated: true)
+        let name:String
+        name = dataSource[indexPath.section][indexPath.row]
+    
+    
+        print("selected \(name)")
     }
 }
 
@@ -145,6 +160,7 @@ extension ViewController: UISearchBarDelegate {
         filterText = searchText
     }
 }
+
 
 
 
