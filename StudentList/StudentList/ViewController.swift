@@ -9,18 +9,13 @@ import UIKit
 
 protocol ViewControllerDelegate{
     func didSelectStudent(_ student: String)
+    
 }
 
 class ViewController: UIViewController {
     
-    var delegate: ViewControllerDelegate?
+    weak var delegate: ViewControllerDelegate?
 
-    
-    func didSelectStudent(sender: String) {
-            // Вызываем делегат в тот момент, когда кнопка нажата
-        delegate?.didSelectStudent(sender)
-        }
-    
     @IBOutlet weak var tableView: UITableView!
   
     
@@ -152,9 +147,9 @@ extension ViewController: UITableViewDelegate {
         let name:String
         name = dataSource[indexPath.section][indexPath.row]
         print("selected \(name)")
-        
-        self.didSelectStudent(sender: name) // updateStudentNameButton
-        self.dismiss(animated: true, completion: nil) //close StudentList
+      
+        delegate?.didSelectStudent(name)
+        dismiss(animated: true, completion: nil) //close StudentList
     }
 }
 
