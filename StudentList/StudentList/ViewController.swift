@@ -7,14 +7,16 @@
 
 import UIKit
 
-protocol ViewControllerDelegate{
+protocol ViewControllerDelegate: AnyObject {
     func didSelectStudent(_ student: String)
-    
 }
+
 
 class ViewController: UIViewController {
     
     weak var delegate: ViewControllerDelegate?
+    var delegate2: StudentUniqueProtocol?
+  
 
     @IBOutlet weak var tableView: UITableView!
   
@@ -39,6 +41,9 @@ class ViewController: UIViewController {
                 "Сысов Валерий Александрович",
                 "Артимович Игорь Владимирович"
     ].sorted()
+    
+    
+    let uniqueStudents: Set <String> = []
     
     var filteredMen:[String] = []
     var filteredWomen:[String] = []
@@ -67,9 +72,6 @@ class ViewController: UIViewController {
 
 
 // MARK: - Functions
-//    func closeStudentButton(){
-//        dismiss(animated: true)
-//    }
 
     func resetDataSource() {
         filteredMen = men
@@ -147,9 +149,10 @@ extension ViewController: UITableViewDelegate {
         let name:String
         name = dataSource[indexPath.section][indexPath.row]
         print("selected \(name)")
-      
+       
         delegate?.didSelectStudent(name)
         dismiss(animated: true, completion: nil) //close StudentList
+        delegate2?.didSelectUniqueStudent(name)
     }
 }
 
