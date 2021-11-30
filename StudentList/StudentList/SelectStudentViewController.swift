@@ -11,7 +11,7 @@ class SelectStudentViewController: UIViewController {
     
    
     var kids = ["Mary","Nik", "Leo"]
-
+    
     
     override func viewDidLoad() {
            super.viewDidLoad()
@@ -78,6 +78,7 @@ extension SelectStudentViewController: UITableViewDataSource {
                 tableView.reloadData()
             }
     }
+    
 }
     // MARK: - Sort Row
 //    func tableView(UITableView, targetIndexPathForMoveFromRowAt: IndexPath, toProposedIndexPath: IndexPath) -> IndexPath
@@ -92,12 +93,26 @@ extension SelectStudentViewController: UITableViewDataSource {
 //            configuration.performsFirstActionWithFullSwipe = true
 //            return configuration
 //    }
-
-    
+// MARK: - alert
+extension SelectStudentViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = kids[indexPath.row]
+        let alert = UIAlertController(title: user, message:  "Студент", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
+            self.kids.remove(at: indexPath.row)
+            tableView.reloadData()
+        }))
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+       // alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+     present(alert, animated: true, completion: nil)
+    }
+}
 extension SelectStudentViewController: StudentUniqueProtocol{
     func didSelectUniqueStudent(_ name: String) {
-        
-        kids.append(name)
+        let uniqueStudent = name
+        print(uniqueStudent)
+        kids.append(uniqueStudent)
     }
 }
 

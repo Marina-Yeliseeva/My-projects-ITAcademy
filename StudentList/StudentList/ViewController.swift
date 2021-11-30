@@ -43,7 +43,6 @@ class ViewController: UIViewController {
     ].sorted()
     
     
-    let uniqueStudents: Set <String> = []
     
     var filteredMen:[String] = []
     var filteredWomen:[String] = []
@@ -151,8 +150,10 @@ extension ViewController: UITableViewDelegate {
         print("selected \(name)")
        
         delegate?.didSelectStudent(name)
+        
         dismiss(animated: true, completion: nil) //close StudentList
         delegate2?.didSelectUniqueStudent(name)
+        print ("this is \(name)")
     }
 }
 
