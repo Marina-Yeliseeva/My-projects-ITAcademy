@@ -9,27 +9,28 @@ import UIKit
 
 class SelectStudentViewController: UIViewController {
     
-   
-    var kids = ["Mary","Nik", "Leo"]
     
-    
+    var arrayStudentList: [String] = []
+
     override func viewDidLoad() {
            super.viewDidLoad()
 
        }
-    @IBOutlet var tableView: UIView!
+   
+    
    
   
-    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var studentName: UIButton!
     
     
     @IBAction func sortButton(_ sender: Any) {
-        if table.isEditing{
-            table.isEditing = false
+        if tableView.isEditing{
+            tableView.isEditing = false
         }
         else{
-            table.isEditing = true
+            tableView.isEditing = true
             
         }
         }
@@ -38,6 +39,7 @@ class SelectStudentViewController: UIViewController {
        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        vc.delegate2 = self
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
@@ -45,22 +47,25 @@ class SelectStudentViewController: UIViewController {
 
 extension SelectStudentViewController: ViewControllerDelegate {
 func didSelectStudent(_ student: String) {
-    studentName.setTitle(student, for: .normal)
+    //studentName.setTitle(student, for: .normal)
 }
 }
 
 extension SelectStudentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        kids.count
+     arrayStudentList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       // arrayStudentList = Array(setStudentList).sorted()
         let cell = tableView.dequeueReusableCell(withIdentifier: "UniqueTableViewCell", for: indexPath) as! UniqueTableViewCell
-        cell.nameLabel.text = kids[indexPath.row]
+        cell.nameLabel.text = arrayStudentList[indexPath.row]
         return cell
     }
+  
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Students"
+        
+        return "Students \(arrayStudentList.count) person"
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -68,14 +73,15 @@ extension SelectStudentViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        kids.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        arrayStudentList.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
      // MARK: - Delete Row
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
-                kids.remove(at: indexPath.row)
+                arrayStudentList.remove(at: indexPath.row)
                 tableView.reloadData()
+             
             }
     }
     
@@ -96,10 +102,10 @@ extension SelectStudentViewController: UITableViewDataSource {
 // MARK: - alert
 extension SelectStudentViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = kids[indexPath.row]
+        let user = arrayStudentList[indexPath.row]
         let alert = UIAlertController(title: user, message:  "Студент", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { _ in
-            self.kids.remove(at: indexPath.row)
+            self.arrayStudentList.remove(at: indexPath.row)
             tableView.reloadData()
         }))
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -110,9 +116,16 @@ extension SelectStudentViewController: UITableViewDelegate{
 }
 extension SelectStudentViewController: StudentUniqueProtocol{
     func didSelectUniqueStudent(_ name: String) {
-        let uniqueStudent = name
-        print(uniqueStudent)
-        kids.append(uniqueStudent)
+            
+        if arrayStudentList.contains(name){
+                tableView.reloadData()
+        }
+        else {arrayStudentList.append(name)
+            
+        }
+            tableView.reloadData()
+            dismiss(animated: true, completion: nil)
+        }
     }
-}
+
 

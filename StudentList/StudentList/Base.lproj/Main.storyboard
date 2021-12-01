@@ -117,9 +117,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6A-Bu-ehD">
-                                                    <rect key="frame" x="20" y="-1" width="190" height="44"/>
+                                                    <rect key="frame" x="20" y="-1" width="334" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -131,7 +131,7 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="2dq-JZ-Mad" id="HYI-o1-DBW"/>
+                                    <outlet property="dataSource" destination="2dq-JZ-Mad" id="VsM-9h-NRS"/>
                                     <outlet property="delegate" destination="2dq-JZ-Mad" id="Vkc-6z-Vpo"/>
                                 </connections>
                             </tableView>
@@ -159,8 +159,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="studentName" destination="Y73-cC-gel" id="dDs-3o-MCb"/>
-                        <outlet property="table" destination="wMR-EC-vHO" id="FWX-t1-sZa"/>
-                        <outlet property="tableView" destination="kg4-y5-G77" id="hHv-Ws-fKv"/>
+                        <outlet property="tableView" destination="wMR-EC-vHO" id="hVd-wo-ktG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAG-zN-qrn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
