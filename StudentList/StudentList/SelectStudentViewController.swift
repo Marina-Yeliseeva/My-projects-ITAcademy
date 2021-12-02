@@ -8,8 +8,7 @@
 import UIKit
 
 class SelectStudentViewController: UIViewController {
-    
-    
+
     var arrayStudentList: [String] = []
 
     override func viewDidLoad() {
@@ -17,9 +16,6 @@ class SelectStudentViewController: UIViewController {
 
        }
    
-    
-   
-  
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var studentName: UIButton!
@@ -62,9 +58,13 @@ extension SelectStudentViewController: UITableViewDataSource {
         cell.nameLabel.text = arrayStudentList[indexPath.row]
         return cell
     }
+
   
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
+        if arrayStudentList.count == 0 {
+            return nil
+        }
+
         return "Students \(arrayStudentList.count) person"
     }
     
@@ -116,16 +116,16 @@ extension SelectStudentViewController: UITableViewDelegate{
 }
 extension SelectStudentViewController: StudentUniqueProtocol{
     func didSelectUniqueStudent(_ name: String) {
-            
-        if arrayStudentList.contains(name){
-                tableView.reloadData()
-        }
-        else {arrayStudentList.append(name)
-            
-        }
+        
+    if arrayStudentList.contains(name){
             tableView.reloadData()
-            dismiss(animated: true, completion: nil)
-        }
     }
+    else {arrayStudentList.append(name)
+    }
+    tableView.reloadData()
+    dismiss(animated: true, completion: nil)
+    }
+    }
+
 
 
