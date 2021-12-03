@@ -148,28 +148,28 @@ class StudentViewController: UIViewController {
         vc.shouldAddSearchBar = true
         vc.men = DataSource.menArray
         vc.women = DataSource.womenArray
-        vc.didSelectStudentBlock = {[weak self] student: String, gender: Int, sender: UIViewController in
+        vc.didSelectStudentBlock = {[weak self] student, gender, sender in
             guard let self = self
             else {return}
             var alreadyExist = false
-            if self.gender == 0 {
-                if men.contains(student) {
-                    self.alreadyExist = true
+            if gender == 0 {
+                if self.men.contains(student) {
+                    alreadyExist = true
                 }
             } else {
-                if women.contains(student) {
+                if self.women.contains(student) {
                     alreadyExist = true
                 }
             }
             if alreadyExist {
-                presentAlertForStudent(student, in: sender)
+                self.presentAlertForStudent(student, in: sender)
                 return
             }
             sender.dismiss(animated: true, completion: nil)
-            if self.gender == 0 {
-                men.append(student)
+            if gender == 0 {
+                self.men.append(student)
             } else {
-                women.append(student)
+                self.women.append(student)
             }
             
             self.reloadFilterData()
