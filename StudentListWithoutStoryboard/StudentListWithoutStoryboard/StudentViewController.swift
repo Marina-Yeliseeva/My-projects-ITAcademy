@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol StudentViewControllerDelegate: AnyObject {
-    func didSelectStudent(_ student: String, gender: Int, sender: UIViewController)
-}
-
 class StudentViewController: UIViewController {
     
     private lazy var tableView = UITableView()
@@ -20,7 +16,7 @@ class StudentViewController: UIViewController {
     var shouldAddSelectButton = false
     var shouldAddSearchBar = false
 
-    weak var delegate: StudentViewControllerDelegate?
+    var didSelectStudentBlock: ((_ student: String, _ gender: Int,_ sender: UIViewController)->())?
     
     var women: [String] = []
     var men: [String] = []
@@ -75,7 +71,7 @@ class StudentViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: shouldAddSearchBar ? searchBar.bottomAnchor : view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: shouldAddSelectButton ? selectButton.topAnchor : view.safeAreaLayoutGuide.bottomAnchor),//  если true  запускается первая часть до : если нет то вторая
+            tableView.bottomAnchor.constraint(equalTo: shouldAddSelectButton ? selectButton.topAnchor : view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
@@ -152,13 +148,36 @@ class StudentViewController: UIViewController {
         vc.shouldAddSearchBar = true
         vc.men = DataSource.menArray
         vc.women = DataSource.womenArray
-        
-        vc.delegate = self
-        
+        vc.didSelectStudentBlock = {[weak self] student: String, gender: Int, sender: UIViewController in
+            guard let self = self
+            else {return}
+            var alreadyExist = false
+            if self.gender == 0 {
+                if men.contains(student) {
+                    self.alreadyExist = true
+                }
+            } else {
+                if women.contains(student) {
+                    alreadyExist = true
+                }
+            }
+            if alreadyExist {
+                presentAlertForStudent(student, in: sender)
+                return
+            }
+            sender.dismiss(animated: true, completion: nil)
+            if self.gender == 0 {
+                men.append(student)
+            } else {
+                women.append(student)
+            }
+            
+            self.reloadFilterData()
+        }
+       //vc.delegate = self
         present(vc, animated: true)
     }
 }
-
 extension StudentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].count
@@ -196,7 +215,7 @@ extension StudentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.didSelectStudent(dataSource[indexPath.section][indexPath.row], gender: indexPath.section, sender: self)
+        self.didSelectStudentBlock?(dataSource[indexPath.section][indexPath.row], indexPath.section, self)
         }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -233,36 +252,6 @@ extension StudentViewController: UISearchBarDelegate {
     }
 }
 
-extension StudentViewController: StudentViewControllerDelegate {
-    func didSelectStudent(_ student: String, gender: Int, sender: UIViewController) {
-        
-        var alreadyExist = false
-        
-        if gender == 0 {
-            if men.contains(student) {
-                alreadyExist = true
-            }
-        } else {
-            if women.contains(student) {
-                alreadyExist = true
-            }
-        }
-        
-        if alreadyExist {
-            presentAlertForStudent(student, in: sender)
-            return
-        }
-        
-        sender.dismiss(animated: true, completion: nil)
-        
-        if gender == 0 {
-            men.append(student)
-        } else {
-            women.append(student)
-        }
-        
-        reloadFilterData()
-    }
-}
+
 
 
