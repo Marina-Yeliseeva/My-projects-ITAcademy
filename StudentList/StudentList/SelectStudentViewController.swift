@@ -9,17 +9,20 @@ import UIKit
 
 class SelectStudentViewController: UIViewController {
     
-   let saveStudent = SaveStudent()
-
-    lazy var arrayStudentList: [String] = {
-        saveStudent.readData()
-    }()
-
+    let saveStudent = SaveStudent()
+    
+    lazy var arrayStudentList: [String] = saveStudent.readData() {
+        didSet {
+            saveStudent.saveData(arrayStudentList: arrayStudentList)
+        }
+    }
+    
+    
     override func viewDidLoad() {
-           super.viewDidLoad()
-
-       }
-   
+        super.viewDidLoad()
+        
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var studentName: UIButton!
@@ -33,10 +36,10 @@ class SelectStudentViewController: UIViewController {
             tableView.isEditing = true
             
         }
-        }
+    }
     
     @IBAction func studentButton(_ sender: Any) {
-       
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         vc.delegate2 = self
@@ -50,29 +53,29 @@ class SelectStudentViewController: UIViewController {
 }
 
 extension SelectStudentViewController: ViewControllerDelegate {
-func didSelectStudent(_ student: String) {
-    //studentName.setTitle(student, for: .normal)
-}
+    func didSelectStudent(_ student: String) {
+        //studentName.setTitle(student, for: .normal)
+    }
 }
 
 extension SelectStudentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     arrayStudentList.count
+        arrayStudentList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // arrayStudentList = Array(setStudentList).sorted()
+        // arrayStudentList = Array(setStudentList).sorted()
         let cell = tableView.dequeueReusableCell(withIdentifier: "UniqueTableViewCell", for: indexPath) as! UniqueTableViewCell
         cell.nameLabel.text = arrayStudentList[indexPath.row]
         return cell
     }
-
-  
+    
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if arrayStudentList.count == 0 {
             return nil
         }
-
+        
         return "Students \(arrayStudentList.count) person"
     }
     
@@ -83,21 +86,20 @@ extension SelectStudentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         arrayStudentList.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     }
-     // MARK: - Delete Row
-
+    // MARK: - Delete Row
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                arrayStudentList.remove(at: indexPath.row)
-                tableView.reloadData()
-             
-            }
+        if editingStyle == .delete {
+            arrayStudentList.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
     
 }
-    // MARK: - Sort Row
+// MARK: - Sort Row
 //    func tableView(UITableView, targetIndexPathForMoveFromRowAt: IndexPath, toProposedIndexPath: IndexPath) -> IndexPath
 //}
-    // MARK: - Delete Row 2 ?????
+// MARK: - Delete Row 2 ?????
 //    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)-> UISwipeActionsConfiguration? {
 //            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completionHandler) in
 //                self.kids.remove(at: indexPath.row)
@@ -118,23 +120,26 @@ extension SelectStudentViewController: UITableViewDelegate{
         }))
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
-       // alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-     present(alert, animated: true, completion: nil)
+        // alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 extension SelectStudentViewController: StudentUniqueProtocol{
     func didSelectUniqueStudent(_ name: String) {
         
-    if arrayStudentList.contains(name){
+        if arrayStudentList.contains(name){
             tableView.reloadData()
+        }
+        else {
+//            let newArray = arrayStudentList + [name]
+            arrayStudentList.append(name)
+        }
+        tableView.reloadData()
+        dismiss(animated: true, completion: nil)
+        
     }
-    else {
-        arrayStudentList.append(name)
-    }
-    tableView.reloadData()
-    dismiss(animated: true, completion: nil)
-    }
-    }
+    
+}
 
 
 
