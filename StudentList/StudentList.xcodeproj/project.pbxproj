@@ -16,6 +16,7 @@
 		CC1CB439274AB48E00A7510F /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1CB438274AB48E00A7510F /* StudentCell.swift */; };
 		CC8849E62752AEDC001EAEC2 /* Ptotocol2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8849E52752AEDC001EAEC2 /* Ptotocol2.swift */; };
 		CC8849EC2755E820001EAEC2 /* UniqueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8849EB2755E820001EAEC2 /* UniqueTableViewCell.swift */; };
+		CC884A16275E4AAA001EAEC2 /* SaveStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC884A15275E4AAA001EAEC2 /* SaveStudent.swift */; };
 		CCA976A2274E4D6B005E848A /* SelectStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA976A1274E4D6B005E848A /* SelectStudentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		CC1CB438274AB48E00A7510F /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
 		CC8849E52752AEDC001EAEC2 /* Ptotocol2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ptotocol2.swift; sourceTree = "<group>"; };
 		CC8849EB2755E820001EAEC2 /* UniqueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueTableViewCell.swift; sourceTree = "<group>"; };
+		CC884A15275E4AAA001EAEC2 /* SaveStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStudent.swift; sourceTree = "<group>"; };
 		CCA976A1274E4D6B005E848A /* SelectStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStudentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 				CC8849EB2755E820001EAEC2 /* UniqueTableViewCell.swift */,
 				CC1CB4022744258900A7510F /* ViewController.swift */,
 				CC8849E52752AEDC001EAEC2 /* Ptotocol2.swift */,
+				CC884A15275E4AAA001EAEC2 /* SaveStudent.swift */,
 				CC1CB4042744258900A7510F /* Main.storyboard */,
 				CC1CB438274AB48E00A7510F /* StudentCell.swift */,
 				CC1CB4072744259000A7510F /* Assets.xcassets */,
@@ -152,6 +155,7 @@
 			files = (
 				CC8849E62752AEDC001EAEC2 /* Ptotocol2.swift in Sources */,
 				CC1CB439274AB48E00A7510F /* StudentCell.swift in Sources */,
+				CC884A16275E4AAA001EAEC2 /* SaveStudent.swift in Sources */,
 				CC1CB4032744258900A7510F /* ViewController.swift in Sources */,
 				CC1CB3FF2744258900A7510F /* AppDelegate.swift in Sources */,
 				CCA976A2274E4D6B005E848A /* SelectStudentViewController.swift in Sources */,

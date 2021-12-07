@@ -8,8 +8,12 @@
 import UIKit
 
 class SelectStudentViewController: UIViewController {
+    
+   let saveStudent = SaveStudent()
 
-    var arrayStudentList: [String] = []
+    lazy var arrayStudentList: [String] = {
+        saveStudent.readData()
+    }()
 
     override func viewDidLoad() {
            super.viewDidLoad()
@@ -39,6 +43,10 @@ class SelectStudentViewController: UIViewController {
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
+    func SaveData() {
+        saveStudent.saveData(arrayStudentList: arrayStudentList)
+    }
+    
 }
 
 extension SelectStudentViewController: ViewControllerDelegate {
@@ -120,7 +128,8 @@ extension SelectStudentViewController: StudentUniqueProtocol{
     if arrayStudentList.contains(name){
             tableView.reloadData()
     }
-    else {arrayStudentList.append(name)
+    else {
+        arrayStudentList.append(name)
     }
     tableView.reloadData()
     dismiss(animated: true, completion: nil)
