@@ -41,6 +41,7 @@ class SaveStudentCoreData {
     }
     
     func saveData(arrayStudentList: [String]?){
+        clearData()
         
         guard let arrayStudentList = arrayStudentList else {
             return
@@ -55,7 +56,7 @@ class SaveStudentCoreData {
         
         let student = StudentsToSave(context: context)
         student.name = name
-        var array:[String] = []
+        saveContext()
         
     }
     
@@ -76,22 +77,20 @@ class SaveStudentCoreData {
         
     }
   
+
+   //   MARK: -  func clearData() {
+    func clearData(){
+            let fetchRequest: NSFetchRequest<StudentsToSave> = StudentsToSave.fetchRequest()
     
-   
+            if let objects = try? context.fetch(fetchRequest) {
+                for object in objects {
+                    context.delete(object)
+                }
+            }
     
     
-    //  MARK: -  func clearData() {
-    //        let fetchRequest: NSFetchRequest<StudentsToSave> = StudentsToSave.fetchRequest()
-    //
-    //        if let objects = try? context.fetch(fetchRequest) {
-    //            for object in objects {
-    //                context.delete(object)
-    //            }
-    //        }
-    //
-    //
-    //
-    //    }
+    
+        }
     
 }
 
