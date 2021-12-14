@@ -9,13 +9,16 @@ import UIKit
 
 class SelectStudentViewController: UIViewController {
     
-    let saveStudent = SaveStudent()
-    
-    lazy var arrayStudentList: [String] = saveStudent.readData() {
-        didSet {
-            saveStudent.saveData(arrayStudentList: arrayStudentList)
-        }
-    }
+    let saveStudent = SaveStudentCoreData()
+    lazy var arrayStudentList: [String] = {
+           saveStudent.readData()
+       }()
+  // Когда сохраняем через  User.defaults
+//lazy var arrayStudentList: [String] = saveStudent.readData()
+//        didSet {
+//            saveStudent.saveData(arrayStudentList: arrayStudentList)
+//        }
+//    }
     
     
     override func viewDidLoad() {
@@ -134,6 +137,7 @@ extension SelectStudentViewController: StudentUniqueProtocol{
 //            let newArray = arrayStudentList + [name]
             arrayStudentList.append(name)
         }
+        SaveData()
         tableView.reloadData()
         dismiss(animated: true, completion: nil)
         

@@ -17,6 +17,8 @@
 		CC8849E62752AEDC001EAEC2 /* Ptotocol2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8849E52752AEDC001EAEC2 /* Ptotocol2.swift */; };
 		CC8849EC2755E820001EAEC2 /* UniqueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8849EB2755E820001EAEC2 /* UniqueTableViewCell.swift */; };
 		CC884A16275E4AAA001EAEC2 /* SaveStudent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC884A15275E4AAA001EAEC2 /* SaveStudent.swift */; };
+		CC884A3F2765F872001EAEC2 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC884A3D2765F872001EAEC2 /* CoreData.xcdatamodeld */; };
+		CC884A412765F941001EAEC2 /* SaveStudentCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC884A402765F941001EAEC2 /* SaveStudentCoreData.swift */; };
 		CCA976A2274E4D6B005E848A /* SelectStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA976A1274E4D6B005E848A /* SelectStudentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		CC8849E52752AEDC001EAEC2 /* Ptotocol2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ptotocol2.swift; sourceTree = "<group>"; };
 		CC8849EB2755E820001EAEC2 /* UniqueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniqueTableViewCell.swift; sourceTree = "<group>"; };
 		CC884A15275E4AAA001EAEC2 /* SaveStudent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStudent.swift; sourceTree = "<group>"; };
+		CC884A3E2765F872001EAEC2 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		CC884A402765F941001EAEC2 /* SaveStudentCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStudentCoreData.swift; sourceTree = "<group>"; };
 		CCA976A1274E4D6B005E848A /* SelectStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStudentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +71,8 @@
 			isa = PBXGroup;
 			children = (
 				CC1CB3FE2744258900A7510F /* AppDelegate.swift */,
+				CC884A3D2765F872001EAEC2 /* CoreData.xcdatamodeld */,
+				CC884A402765F941001EAEC2 /* SaveStudentCoreData.swift */,
 				CC1CB4002744258900A7510F /* SceneDelegate.swift */,
 				CCA976A1274E4D6B005E848A /* SelectStudentViewController.swift */,
 				CC8849EB2755E820001EAEC2 /* UniqueTableViewCell.swift */,
@@ -154,7 +160,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8849E62752AEDC001EAEC2 /* Ptotocol2.swift in Sources */,
+				CC884A412765F941001EAEC2 /* SaveStudentCoreData.swift in Sources */,
 				CC1CB439274AB48E00A7510F /* StudentCell.swift in Sources */,
+				CC884A3F2765F872001EAEC2 /* CoreData.xcdatamodeld in Sources */,
 				CC884A16275E4AAA001EAEC2 /* SaveStudent.swift in Sources */,
 				CC1CB4032744258900A7510F /* ViewController.swift in Sources */,
 				CC1CB3FF2744258900A7510F /* AppDelegate.swift in Sources */,
@@ -380,6 +388,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CC884A3D2765F872001EAEC2 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC884A3E2765F872001EAEC2 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = CC884A3E2765F872001EAEC2 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CC1CB3F32744258900A7510F /* Project object */;
 }
