@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Notification time:"; ObjectID = "BTq-0C-cn6"; */
+"BTq-0C-cn6.text" = "Benachrichtigungszeit:";
+
+/* Class = "UILabel"; text = "Enter subtitle:"; ObjectID = "Hx0-T1-Szx"; */
+"Hx0-T1-Szx.text" = "Untertitel eingeben:";
+
+/* Class = "UILabel"; text = "Allow Notifications:"; ObjectID = "YTa-c3-Whf"; */
+"YTa-c3-Whf.text" = "Benachrichtigungen zulassen:";
+
+/* Class = "UIButton"; configuration.title = "Open Settings"; ObjectID = "bHd-it-UqS"; */
+"bHd-it-UqS.configuration.title" = "Einstellungen öffnen";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bHd-it-UqS"; */
+"bHd-it-UqS.normalTitle" = "Taste";
+
+/* Class = "UIButton"; configuration.title = "Apply"; ObjectID = "dle-54-2l4"; */
+"dle-54-2l4.configuration.title" = "Anwenden";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dle-54-2l4"; */
+"dle-54-2l4.normalTitle" = "Taste";
+
+/* Class = "UILabel"; text = "Enter title:"; ObjectID = "qza-Aw-brV"; */
+"qza-Aw-brV.text" = "Titel eingeben:";
+
+/* Class = "UILabel"; text = "Notifications are disabled. please enable them in settings"; ObjectID = "uR9-Ll-Ue9"; */
+"uR9-Ll-Ue9.text" = "Benachrichtigungen sind deaktiviert. Bitte aktivieren Sie sie in den Einstellungen";
